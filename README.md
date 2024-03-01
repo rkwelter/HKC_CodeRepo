@@ -17,8 +17,9 @@ The code is organized into several directories, as follows:
 2.) FluidSolver: In this folder, one finds the function "FluidSolver.m", which uses ode45 to call the time 
                  stepper written by ModelConstructor to solve a HKC model.  This is primarily used in via 
                  the functions in the HeatTransport folder, but can be used directly by first running the
-                 script "AddPaths.m".  "FluidSolver.m" takes a set of parameter values, a previously
-                 computed trajectory (can be empty), an "addTime" arugment, and a "save" boolean, solves the
+                 script "AddPaths.m".  "FluidSolver.m" contains detailed comments for how it is used.  
+                 Broadly speaking, "FluidSolver.m" takes a set of parameter values, a previously computed 
+                 trajectory (can be empty), an "addTime" arugment, and a "save" boolean, solves the 
                  corresponding HKC model starting from the last point on the previously computed trajectory
                  for the length of time "addTime", adds this to the previously computed trajectory, and if
                  the "save" boolean is true, then it saves the result in the folder "SavedData".  If the
