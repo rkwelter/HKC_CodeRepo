@@ -29,9 +29,11 @@ The code is organized into several directories, as follows:
 3.) HeatTransport: This folder contains a number of functions for generating heat transport data from the
                    solutions to the HKC models.  More description to come.
 
-4.) FluidVisualizer: In this folder, one finds the functions "FluidSimulator_TemperatureField.m",
-                     "FluidSimulator_VelocityField.m", "FluidSimulator_PhaseSpace.m" and
-                     "FluidSimulator_all.m".  
+4.) FluidVisualizer: In this folder, one finds the functions "FluidVis_TemperatureField.m",
+                     "FluidVis_VelocityField.m" and "FluidVis_PhaseSpace.m", which when given a solution
+                     from "FluidSolver.m" generate snapshots of the corresponding temperature and velocity
+                     fields, and plot the solution as a trajectory in phase space.  For more details on 
+                     how to call these functions, please see the comments within.
 
 5.) SavedData: This folder contains the heat transport data in the subfolder "HeatTransport", as well as
                all trajectories generated in the subfolder "Trajectories".  
