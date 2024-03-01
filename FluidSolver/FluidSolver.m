@@ -6,6 +6,11 @@ function [t,X,parameters] = FluidSolver(varargin)
 % function can either initialize a new trajectory with a user-selected
 % initial condition or continue an existing trajectory
 % 
+% A typical call of this would function would be as follows:
+%
+% parameters = [Pr,Ro,k1,Ra,tInc,0,M,0];
+% [t,X,parameters] = FluidSolver(parameters,[],addTime,1);
+%
 % Required input arguments:
 %     - parameters: 8x1 vector, specifying the Prandtl number, rotation
 %                   number, shape parameter k1, Rayleigh number,
