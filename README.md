@@ -23,3 +23,6 @@ The code is organized into several directories, as follows:
 5.) **SavedData**: This folder contains the heat transport data in the subfolder "HeatTransport", as well as all trajectories generated in the subfolder "Trajectories".  
 
 6.) **SavedImages**: This folder contains the images generated from the functions in "FluidVisualizer", as well as several figures generated for the RRBC paper.
+
+Additional comments:
+        - Note that for larger models, it is very computationally expensive to enforce a small error tolerance.  While an error tolerance of 10^(-12) is acceptable for HKC models 1 - 100 or so, one may want           to adjust the error tolerance down to 10^(-8) for models 100 - 200 or 10^(-6) for models 200+.  
