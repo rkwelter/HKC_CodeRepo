@@ -8,15 +8,15 @@ function [t,X,parameters] = FluidSolver(varargin)
 % 
 % A typical call of this would function would be as follows:
 %
-% parameters = [Pr,Ro,k1,Ra,tInc,0,M,0];
+% parameters = [Pr,Ro,k1,Ra,tInc,0,M,0,10^(-10)];
 % [t,X,parameters] = FluidSolver(parameters,[],addTime,1);
 %
 % Required input arguments:
-%     - parameters: 8x1 vector, specifying the Prandtl number, rotation
+%     - parameters: 9x1 vector, specifying the Prandtl number, rotation
 %                   number, shape parameter k1, Rayleigh number,
 %                   integration step size, final time, HKC model number,
-%                   and cumulative run time.  Note Tf MUST be a multiple of
-%                   tInc
+%                   cumulative run time and error tolerance.  Note Tf MUST 
+%                   be a multiple of tInc.
 %     - Xprev: a matrix storing the previously computed values of the
 %              trajectory.  Should be an empty matrix if the trajectory has
 %              not been previously initialized.  Otherwise the different
@@ -55,6 +55,7 @@ tInc=parameters(5);
 Tf = parameters(6);
 M = parameters(7);
 runTime = parameters(8);
+errTol = parameters(9);
 
 % generate variables
 
@@ -73,7 +74,8 @@ n=size(X0,2);
 
 % integrate
 tspan=0:tInc:addTime;
-options = odeset('RelTol',1e-12,'AbsTol',1e-12*ones(1,n));
+%options = odeset('RelTol',1e-12,'AbsTol',1e-12*ones(1,n));
+options = odeset('RelTol',errTol,'AbsTol',errTol*ones(1,n));
 
 if(runTime >= 0) % uncomment here and below to test the computational time
     tic;
@@ -101,9 +103,9 @@ fileName = strcat(folderName,'/',diffEq,'_Trajectory_Ra_',num2str(Ra),'_Ro_',num
 
 if(nargin == 4 && saveData)
     if(isfolder(folderName))
-        save(fileName,'Ra','Pr','k1','Ro','Tf','tInc','M','runTime','X');
+        save(fileName,'parameters','X');
     elseif(mkdir(folderName))
-        save(fileName,'Ra','Pr','k1','Ro','Tf','tInc','M','runTime','X');
+        save(fileName,'parameters','X');
     else
         error('Folder creation failed.');
     end
@@ -111,9 +113,9 @@ elseif(nargin == 6 && saveData)
     heatTransport = varargin{5};
     limitStdDevPercent = varargin{6};
     if(isfolder(folderName))
-        save(fileName,'Ra','Pr','k1','Ro','Tf','tInc','M','runTime','X','heatTransport','limitStdDevPercent');
+        save(fileName,'parameters','X','heatTransport','limitStdDevPercent');
     elseif(mkdir(folderName))
-        save(fileName,'Ra','Pr','k1','Ro','Tf','tInc','M','runTime','X','heatTransport','limitStdDevPercent');
+        save(fileName,'parameters','X','heatTransport','limitStdDevPercent');
     else
         error('Folder creation failed.');
     end
@@ -123,4 +125,3 @@ end
 
 
 end
-
