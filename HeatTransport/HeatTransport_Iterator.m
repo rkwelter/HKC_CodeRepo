@@ -67,6 +67,7 @@ for i=1:length(RaVec)
                 allData = load(name);
                 X = allData.X;
                 parameters = allData.parameters;
+                tInc = parameters(5);
                 heatTransport = allData.heatTransport;
                 limitStdDevPercent = allData.limitStdDevPercent;
                 addTime = 500*tInc;
