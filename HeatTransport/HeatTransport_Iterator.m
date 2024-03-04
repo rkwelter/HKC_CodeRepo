@@ -108,6 +108,7 @@ for i=1:length(RaVec)
             end
                             
             if(extensions > 0)
+                Pr = parameters(1); Ro = parameters(2); k1 = parameters(3); Ra = parameters(4); tInc=parameters(5); Tf = parameters(6); M = parameters(7); runTime = parameters(8);
                 save(name,'Ra','Pr','k1','Ro','Tf','tInc','M','runTime','X','heatTransport','limitStdDevPercent');
             end
             extensions = 0;
