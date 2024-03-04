@@ -38,7 +38,7 @@ function [] = FluidVis_TemperatureField(parameters,X,numPhotos,N,reso,plotInc)
 addpath('../ModelConstruction');
 addpath('../FluidSolver');
 
-date = '2024_03_01_';
+date = '2024_03_03_';
 
 % parameters
 
